@@ -321,6 +321,7 @@ public class Main extends javax.swing.JFrame {
             System.out.println("Validacion de cadena numerica");
             simbolos = symAB;
         }
+        
         boolean valido = true;
         
         if( !cadena.equalsIgnoreCase("") ){
@@ -354,8 +355,7 @@ public class Main extends javax.swing.JFrame {
         
         return valido;
     }
-    
-    
+   
    public int llenar( String cadena ){
        
        int tipo = -1;
@@ -460,6 +460,25 @@ public class Main extends javax.swing.JFrame {
                tipo = compararNumero2Letras( valor0, valorA, valorB );
            }
   
+       }// Letra vs 2Numeros
+       else if(  ((c0 ==true) && (c1 ==true) && (cA ==false) && (cB ==true)) ||
+                 ((c0 ==true) && (c1 ==true) && (cA ==true) && (cB ==false)) ){
+           
+           //B vs C0, C1
+           if( (c0== true) && (c1 == true) && (cB == true) ){
+               System.out.println("Comparacion entre 1, A y B");
+               tipo = compararLerta2Numeros( valorB, valor0, valor1 );
+           }//A vs C0, C1
+           else if( (c0== true) && (c1 == true) && (cA == true) ){
+               System.out.println("Comparacion entre 0, A y B");
+               tipo = compararLerta2Numeros( valorA, valor0, valor1 );
+           }
+  
+       }// 2Letras vs 2Numeros
+       else if(  ((c0 ==true) && (c1 ==true) && (cA ==true) && (cB ==true)) ){
+
+            System.out.println("Comparacion entre 0, 1, A y B");
+            //tipo = compararTodo( valor0, valor1, valorA, valorB );
        }
        
        return tipo;
@@ -514,87 +533,60 @@ public class Main extends javax.swing.JFrame {
         return tipo;
     }
     
+    public int compararLerta2Numeros(int letra, int num1, int num2) {
+        int tipo = -1;
+
+        //l vs num1
+        if ((letra < num1)) {
+
+            //inicia con letra
+            if ((letra < num2)) {
+                System.out.println("inicia con letra");
+                tipo = 2;
+            }//inicia con letra
+            else {
+                System.out.println("inicia con numero");
+                tipo = 1;
+            }
+        }//l vs num2
+        else if ((letra < num2)) {
+
+            //inicia con letra
+            if ((letra < num1)) {
+                System.out.println("inicia con letra");
+                tipo = 2;
+            }//inicia con letra
+            else {
+                System.out.println("inicia con numero");
+                tipo = 1;
+            }
+        } else {
+            System.out.println("inicia con numero");
+            tipo = 1;
+        }
+
+        return tipo;
+    }
+    
     
    
-//   public int tipoDeCadena( String cadena ){
-//       
-//       int indice0, indice1, indiceA, indiceB, tipo;
-//       
-//       tipo = -1;
-//       
-//        if( !cadena.equalsIgnoreCase("") ){
-//        
-//            indice0 = cadena.indexOf('0') ;
-//            indice1 = cadena.indexOf('1') ;
-//            indiceA = cadena.indexOf('a') ;
-//            indiceB = cadena.indexOf('b') ;
-//            
-//            System.out.println("0: " + indice0 + "\n"
-//                             + "1: " + indice1 + "\n"
-//                             + "a: " + indiceA + "\n"
-//                             + "b: " + indiceB + "\n");
-//            
-//            //Cadena de 0`s y 1`s
-//            if( (indice0 != -1) || (indice1 != -1)  ){
-//                
-//                //A existen
-//                if( indiceA != -1 ){
-//                    
-//                    //B existe tambien
-//                    if(indiceB != -1){
-//                        //La cadena inicia con  0 o 1
-//                        if( (indice0 < indiceA) || (indice0 < indiceB) ||
-//                            (indice1 < indiceA) || (indice1 < indiceB) ){
-//                            
-//                            //inicia con 0 o 1
-//                            tipo = 1;
-//                            
-//                        }else{
-//                            //inicia con A o B
-//                            tipo = 2;
-//                        }
-//                    }//B no existe, solo comparamos contra A
-//                    else if( (indice0 < indiceA) || (indice1 < indiceA) ){
-//                        
-//                        //inicia con 0 o 1
-//                        tipo = 1;
-//                        
-//                    }else{
-//                        //inicia con A
-//                        tipo = 2;
-//                    }
-//                    
-//                }//A No existen, pero B si
-//                else if( indiceB != -1 ){
-//                    
-//                    //Revisamos si inicia con 0 o 1
-//                    if( (indice0 < indiceB) || (indice1 < indiceB) ){
-//                        
-//                        //inicia con 0 o 1
-//                        tipo = 1;
-//                    }else{
-//                        //inicia con B
-//                        tipo = 2;
-//                    }
-//                    
-//                }// No existe ni A ni B
-//                else{
-//                    //inicia con 0 o 1
-//                    tipo = 1;
-//                }
-//                
-//            }//No hay 0`s ni 1`s -> Cadena de a`s y b`s 
-//            else if( (indiceA != -1) || (indiceB != -1) ){
-//                
-//                //inicia con A o b
-//                tipo = 2;
-//            }
-//            
-//        }else{
-//            TxtA_cadena.setText("La cadena esta vacia ...");
-//        }
-//       
+//public int compararTodo( int num1, int num2, int letra1 , int letra2 ){
+//
+//       int tipo = -1;
+//
+//       //Empieza con numero
+//       if( (num1 < letra1) || (num1 < letra2) ||
+//           (num2 < letra1) || (num2 < letra2)  ){
+//           System.out.println("Empieza con numero");
+//           tipo = 1;
+//       }//empiza con letra
+//       else if( (letra1 < num1) || (letra1 < num2) ||
+//                 (letra2 < num1) || (letra2 < num2)  ){
+//           System.out.println("Empieza con letra");
+//           tipo = 2;
+//       }
+//   
 //       return tipo;
+//                
 //   }
-//    
 }
