@@ -12,15 +12,18 @@ public class Main extends javax.swing.JFrame {
     * 5 y 6 -> Operandos
     * 7 -> fin de linea ... ;
     */
-    String symAb = "()*|b1;";
-    String sym01 = "()*|01;";
-    String operadores = "ab01";
+    String symAB = "()*|ab;"; // Tipo 1: Numerica
+    String sym01 = "()*|01;"; // Tipo 2: Alfabetica
     
+                   
+    boolean existe0, existe1, existeA, existeB;
+    int valor0, valor1, valorA, valorB;
     /**
      * Creates new form Login
      */
     public Main() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         
     }
 
@@ -45,6 +48,8 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtA_cadena = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbl_tipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,30 +99,37 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Aviso sobre La cadena: ");
 
+        jLabel4.setText("Tipo de cadena: ");
+
+        lbl_tipo.setForeground(new java.awt.Color(0, 51, 255));
+        lbl_tipo.setText(" ...");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Btn_limpiar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Txt_string))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(lbl_tipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(159, 159, 159)
+                                .addComponent(Btn_limpiar))
+                            .addComponent(Txt_string))))
                 .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
@@ -127,18 +139,23 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Txt_string, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(Btn_limpiar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(Btn_limpiar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(lbl_tipo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(19, 19, 19))
         );
 
@@ -204,9 +221,30 @@ public class Main extends javax.swing.JFrame {
        
         // Codigo al actualizar la cadena
         boolean valida = true;
+        int tipo;
         String cadena = Txt_string.getText();
-        valida = evaluarCadena(cadena);
-
+        
+        System.out.println("cadena: " + cadena);
+        tipo = llenar(cadena);
+        
+        if( tipo != -1){
+            
+            if( tipo == 1){
+                 System.out.println("tipo de cadena: Numerica");
+                 lbl_tipo.setText("0`s y 1`s");
+            }else{
+                System.out.println("tipo de cadena: alfabetica");
+                lbl_tipo.setText("a`s y b`s");
+            }
+            
+        }else{
+            System.out.println("Cadena Vacia: " + tipo);
+        }
+        
+       System.out.println(" - - - - - - - - - - ");
+        
+        valida = evaluarCadena(cadena, tipo);
+        
         if (valida == true) {
             TxtA_cadena.setText("Cadena Valida");
         } else {
@@ -262,14 +300,27 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_tipo;
     // End of variables declaration//GEN-END:variables
 
-    public boolean evaluarCadena(String cadena) {
+    public boolean evaluarCadena(String cadena, int tipo) {
         
+        String simbolos = "";
+        
+        //Cadena numerica
+        if(tipo == 1){
+            System.out.println("Validacion de cadena numerica");
+            simbolos = sym01;
+        }//Cadena alfabetica
+        else{
+            System.out.println("Validacion de cadena numerica");
+            simbolos = symAB;
+        }
         boolean valido = true;
         
         if( !cadena.equalsIgnoreCase("") ){
@@ -282,7 +333,7 @@ public class Main extends javax.swing.JFrame {
                 char c = cadena.charAt(i) ;
                 String actual = "";
            
-                int pos = symAb.indexOf( c );
+                int pos = simbolos.indexOf( c );
                 
                 if( pos != -1){
                     actual = c + " -> caracter valido \n";
@@ -303,4 +354,247 @@ public class Main extends javax.swing.JFrame {
         
         return valido;
     }
+    
+    
+   public int llenar( String cadena ){
+       
+       int tipo = -1;
+       //Llenado de Valores numericos de cada Operador
+       valor0 = cadena.indexOf('0') ;
+       valor1 = cadena.indexOf('1') ;
+       valorA = cadena.indexOf('a') ;
+       valorB = cadena.indexOf('b') ;
+       
+       // 0
+       if( valor0 != -1){
+           existe0 = true;
+       }else{
+           existe0 = false;
+       }
+       
+       // 1
+       if( valor1 != -1){
+           existe1 = true;
+       }else{
+           existe1 = false;
+       }
+       
+       //A
+       if( valorA != -1){
+           existeA = true;
+       }else{
+           existeA = false;
+       }
+       
+       // B
+       if( valorB != -1){
+           existeB = true;
+       }else{
+           existeB = false;
+       }
+       System.out.println("existeO: "+ existe0 + " Valor0; " + valor0);
+       System.out.println("existe1: "+ existe1 + " Valor1; " + valor1);
+       System.out.println("existeA: "+ existeA + " ValorA; " + valorA);
+       System.out.println("existeB: "+ existeB + " ValorB; " + valorB);
+       
+       tipo = revisarValores( existe0, existe1, existeA, existeB);
+       
+       return tipo;
+   }
+    
+   public int revisarValores(boolean c0, boolean c1, boolean cA, boolean cB){
+       int tipo = -1;
+       
+       //vacio
+       if( (c0 ==false) && (c1 ==false) && (cA ==false) && (cB ==false) ){
+           tipo = -1;
+       }// inicio con A o B
+       else if( ((c0 ==false) && (c1 ==false) && (cA ==false) && (cB ==true))  ||
+                ((c0 ==false) && (c1 ==false) && (cA ==true) && (cB ==false)) || 
+                ((c0 ==false) && (c1 ==false) && (cA ==true) && (cB ==true)) ){
+           
+           tipo = 2;
+           
+       }// inicio con 0 o 1 
+       else if( ((c0 ==false) && (c1 ==true) && (cA ==false) && (cB ==false))  ||
+                ((c0 ==true) && (c1 ==false) && (cA ==false) && (cB ==false)) || 
+                ((c0 ==true) && (c1 ==true) && (cA ==false) && (cB ==false)) ){
+           
+           tipo = 1;
+           
+       }// Numero vs Letra
+       else if(  ((c0 ==false) && (c1 ==true) && (cA ==false) && (cB ==true)) ||
+                 ((c0 ==false) && (c1 ==true) && (cA ==true) && (cB ==false)) || 
+                 ((c0 ==true) && (c1 ==false) && (cA ==false) && (cB ==true)) || 
+                 ((c0 ==true) && (c1 ==false) && (cA ==true) && (cB ==false)) ){
+           
+           // C1 vs A, B
+           if( (c1== true) && (cB == true)){
+               System.out.println("Comparacion entre 1 y B");
+               tipo = compararNumeroLetra( valor1, valorB );
+           }
+           else if( (c1== true) && (cA == true)){
+               System.out.println("Comparacion entre 1 y A");
+               tipo = compararNumeroLetra( valor1, valorA ) ;
+           }
+           //C0 vs, A,B
+           else if( (c0== true) && (cB == true)){
+               System.out.println("Comparacion entre 0 y B");
+               tipo = compararNumeroLetra( valor0, valorB );
+           }
+           else if( (c0== true) && (cA == true)){
+               System.out.println("Comparacion entre 0 y A");
+               tipo = compararNumeroLetra( valor0, valorA );
+           }
+       }// Numero vs 2Letras
+       else if(  ((c0 ==false) && (c1 ==true) && (cA ==true) && (cB ==true)) ||
+                 ((c0 ==true) && (c1 ==false) && (cA ==true) && (cB ==true)) ){
+           
+           // C1 vs A, B
+           if( (c1== true) && (cA == true) && (cB == true) ){
+               System.out.println("Comparacion entre 1, A y B");
+               tipo = compararNumero2Letras( valor1, valorA, valorB );
+           }// C0 vs A, B
+           else if( (c1== true) && (cA == true) && (cB == true) ){
+               System.out.println("Comparacion entre 0, A y B");
+               tipo = compararNumero2Letras( valor0, valorA, valorB );
+           }
+  
+       }
+       
+       return tipo;
+   }
+   
+   public int compararNumeroLetra( int numero, int letra){
+       int tipo = -1;
+       
+       if( numero < letra ){
+           System.out.println("Empieza con numero");
+           tipo = 1;
+       }else{
+           System.out.println("Empieza con letra");
+           tipo = 2;
+       }
+   
+       return tipo;
+   }
+   
+    public int compararNumero2Letras(int numero, int letra1, int letra2) {
+        int tipo = -1;
+
+        //nun vs l1
+        if ((numero < letra1)) {
+
+            //inicia con numero
+            if ((numero < letra2)) {
+                System.out.println("inicia con numero");
+                tipo = 1;
+            }//inicia con letra
+            else {
+                System.out.println("inicia con letra");
+                tipo = 2;
+            }
+        }//nun vs l2
+        else if ((numero < letra2)) {
+
+            //inicia con numero
+            if ((numero < letra1)) {
+                System.out.println("inicia con numero");
+                tipo = 1;
+            }//inicia con letra
+            else {
+                System.out.println("inicia con letra");
+                tipo = 2;
+            }
+        } else {
+            System.out.println("inicia con letra");
+            tipo = 2;
+        }
+
+        return tipo;
+    }
+    
+    
+   
+//   public int tipoDeCadena( String cadena ){
+//       
+//       int indice0, indice1, indiceA, indiceB, tipo;
+//       
+//       tipo = -1;
+//       
+//        if( !cadena.equalsIgnoreCase("") ){
+//        
+//            indice0 = cadena.indexOf('0') ;
+//            indice1 = cadena.indexOf('1') ;
+//            indiceA = cadena.indexOf('a') ;
+//            indiceB = cadena.indexOf('b') ;
+//            
+//            System.out.println("0: " + indice0 + "\n"
+//                             + "1: " + indice1 + "\n"
+//                             + "a: " + indiceA + "\n"
+//                             + "b: " + indiceB + "\n");
+//            
+//            //Cadena de 0`s y 1`s
+//            if( (indice0 != -1) || (indice1 != -1)  ){
+//                
+//                //A existen
+//                if( indiceA != -1 ){
+//                    
+//                    //B existe tambien
+//                    if(indiceB != -1){
+//                        //La cadena inicia con  0 o 1
+//                        if( (indice0 < indiceA) || (indice0 < indiceB) ||
+//                            (indice1 < indiceA) || (indice1 < indiceB) ){
+//                            
+//                            //inicia con 0 o 1
+//                            tipo = 1;
+//                            
+//                        }else{
+//                            //inicia con A o B
+//                            tipo = 2;
+//                        }
+//                    }//B no existe, solo comparamos contra A
+//                    else if( (indice0 < indiceA) || (indice1 < indiceA) ){
+//                        
+//                        //inicia con 0 o 1
+//                        tipo = 1;
+//                        
+//                    }else{
+//                        //inicia con A
+//                        tipo = 2;
+//                    }
+//                    
+//                }//A No existen, pero B si
+//                else if( indiceB != -1 ){
+//                    
+//                    //Revisamos si inicia con 0 o 1
+//                    if( (indice0 < indiceB) || (indice1 < indiceB) ){
+//                        
+//                        //inicia con 0 o 1
+//                        tipo = 1;
+//                    }else{
+//                        //inicia con B
+//                        tipo = 2;
+//                    }
+//                    
+//                }// No existe ni A ni B
+//                else{
+//                    //inicia con 0 o 1
+//                    tipo = 1;
+//                }
+//                
+//            }//No hay 0`s ni 1`s -> Cadena de a`s y b`s 
+//            else if( (indiceA != -1) || (indiceB != -1) ){
+//                
+//                //inicia con A o b
+//                tipo = 2;
+//            }
+//            
+//        }else{
+//            TxtA_cadena.setText("La cadena esta vacia ...");
+//        }
+//       
+//       return tipo;
+//   }
+//    
 }
